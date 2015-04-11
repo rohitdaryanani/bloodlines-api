@@ -1,0 +1,28 @@
+{
+  "name": "bloodlines",
+  "version": "0.0.0",
+  "description": "web app api for donating blood",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rohitdaryanani/bloodlines.git"
+  },
+  "keywords": [
+    "blood",
+    "donate"
+  ],
+  "author": "Rohit Daryanani",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/rohitdaryanani/bloodlines/issues"
+  },
+  "homepage": "https://github.com/rohitdaryanani/bloodlines",
+  "dependencies": {
+    "hapi": "~8.4.0",
+    "good": "~5.1.2",
+    "good-console": "~4.1.0"
+  }
+}
