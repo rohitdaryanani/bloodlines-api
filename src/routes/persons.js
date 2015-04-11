@@ -24,10 +24,18 @@ module.exports = [
         }
     },
     {
-        method: 'GET',
-        path: '/{name}',
+        method: 'POST',
+        path: '/person',
         handler: function (request, reply) {
-            reply('Hello, ' + encodeURIComponent(request.params.name) + '!');
+            var addPerson = {
+                'firstName'      : request.payload.firstName,
+                'lastName'       : request.payload.lastName,
+                'contactNumber'  : request.payload.contactNumber,
+                'bloodType'      : request.payload.bloodType,
+                'status'         : request.payload.status,
+            }
+            data.push(addPerson);
+            reply('done');
         }
     }
 ]
