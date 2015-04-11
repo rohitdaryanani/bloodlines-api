@@ -2,9 +2,10 @@
 
 var Hapi = require('hapi');
 var Good = require('good');
+var _    = require('lodash');
 
 // routes
-var persons = require( './src/routes/persons' )
+var pageRoutes = _.union(require( './src/routes/persons' ));
 
 // server config
 var server = new Hapi.Server();
@@ -14,8 +15,7 @@ server.connection({
 });
 
 // populate route
-var routes  = [ persons ]
-server.route(routes);
+server.route(pageRoutes);
 
 server.register({
     register: Good,

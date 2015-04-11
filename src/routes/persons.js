@@ -15,10 +15,19 @@ var data = [
     }
 ]
 
-module.exports = {
-    method: 'GET',
-    path: '/persons',
-    handler: function (request, reply) {
-        reply( data );
+module.exports = [
+    {
+        method: 'GET',
+        path: '/persons',
+        handler: function (request, reply) {
+            reply( data );
+        }
+    },
+    {
+        method: 'GET',
+        path: '/{name}',
+        handler: function (request, reply) {
+            reply('Hello, ' + encodeURIComponent(request.params.name) + '!');
+        }
     }
-}
+]

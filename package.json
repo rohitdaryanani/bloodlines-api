@@ -23,6 +23,7 @@
   "dependencies": {
     "hapi": "~8.4.0",
     "good": "~5.1.2",
-    "good-console": "~4.1.0"
+    "good-console": "~4.1.0",
+    "lodash": "~3.6.0"
   }
 }
