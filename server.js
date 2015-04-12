@@ -9,7 +9,7 @@ var pageRoutes = _.union(require( './src/routes/persons' ));
 
 // server config
 var server = new Hapi.Server();
-server.connection({
+module.exports = server.connection({
     host: 'localhost',
     port: '8000'
 });
@@ -33,9 +33,11 @@ server.register({
         throw err;
     }
 
-    server.start( function () {
-        server.log('info', 'Server running at:', server.info.uri );
-    });
+    if (!module.parent) {
+        server.start( function () {
+            server.log('info', 'Server running at:', server.info.uri );
+        });
+    }
 
 })
 
