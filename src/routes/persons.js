@@ -1,40 +1,32 @@
-var data = [
-    {
-        firstName : 'John',
-        lastName  : 'Doe',
-        contactNumber : '12345689',
-        bloodType : 'B+',
-        status : 'donator'
-    },
-    {
-        firstName : 'Jane',
-        lastName  : 'Doe',
-        contactNumber : '96969696',
-        bloodType : 'AB',
-        status : 'donatee'
-    }
-]
+var Person = require( '../models/person.js' );
 
 module.exports = [
     {
         method: 'GET',
         path: '/persons',
         handler: function (request, reply) {
-            reply( data );
+            Person.find( function ( err, persons ) {
+                if ( err ) return console.error( err );
+                console.log( persons );
+                reply( persons );
+            } );
         }
     },
     {
         method: 'POST',
         path: '/person',
         handler: function (request, reply) {
-            var addPerson = {
-                'firstName'      : request.payload.firstName,
-                'lastName'       : request.payload.lastName,
-                'contactNumber'  : request.payload.contactNumber,
-                'bloodType'      : request.payload.bloodType,
-                'status'         : request.payload.status,
-            }
-            data.push(addPerson);
+            var person  = new Person ( {
+                'firstName'     : request.payload.firstName,
+                'lastName'      : request.payload.lastName,
+                'contactNumber' : request.payload.contactNumber,
+                'bloodType'     : request.payload.bloodType,
+                'status'        : request.payload.status,
+            } )
+            person.save( function ( err, persons ) {
+                if ( err ) return console.error( err );
+                console.log( persons );
+            } );
             reply('done');
         }
     }
