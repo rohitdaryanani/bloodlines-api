@@ -2,14 +2,26 @@ var Person = require( '../models/person.js' );
 
 module.exports = [
     {
-        method: 'GET',
-        path: '/persons',
-        handler: function (request, reply) {
+        method  : 'GET',
+        path    : '/persons',
+        handler : function (request, reply) {
             Person.find( function ( err, persons ) {
                 if ( err ) return console.error( err );
                 console.log( persons );
                 reply( persons );
             } );
+        }
+    },
+    {
+        method: 'GET',
+        path : '/person/{id}',
+        handler : function ( request, reply ) {
+            var id = request.params.id;
+            Person.findOne( { _id : id}, function ( err, person ) {
+                if ( err ) return console.error( err );
+                console.log( person );
+                reply( person );
+            } )
         }
     },
     {
@@ -23,11 +35,11 @@ module.exports = [
                 'bloodType'     : request.payload.bloodType,
                 'status'        : request.payload.status,
             } )
-            person.save( function ( err, persons ) {
+            person.save( function ( err, person ) {
                 if ( err ) return console.error( err );
-                console.log( persons );
+                console.log( person );
+                reply('done');
             } );
-            reply('done');
         }
     }
 ]

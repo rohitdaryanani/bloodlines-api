@@ -7,19 +7,21 @@ var mongoose = require( 'mongoose' );
 
 
 // connect to mongo
-mongoose.connect('mongodb://localhost/test');
-
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
     console.log('yey');
 });
 
+mongoose.connect('mongodb://localhost/test');
+
 // routes
 var pageRoutes = _.union(require( './src/routes/persons' ));
 
 // server config
 var server = new Hapi.Server();
+
+// inject server for test
 module.exports = server.connection({
     port: '8000'
 });
