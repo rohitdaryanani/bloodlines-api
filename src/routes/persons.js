@@ -18,9 +18,8 @@ module.exports = [
             var id = request.params.id;
             Person.findOne( { _id : id}, function ( err, person ) {
                 if ( err ) return reply( {
-                    'statusCode' : 404,
-                    'error'      : err,
-                    'message'    : 'Person not found'
+                    'statusCode' : 200,
+                    'error'      : 'Person not found'
                 } );
                 reply( person );
             } )

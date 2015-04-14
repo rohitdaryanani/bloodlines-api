@@ -11,43 +11,64 @@ var expect   = Code.expect;
 var server = require( '../server' );
 
 
-describe('Persons', function () {
-    it( 'should get a specific person by id', function ( done ) {
-        var options = {
-            method : 'GET',
-            url    : '/person/552cb675ead3b564d3249e4f'
-        };
+describe( 'Persons', function () {
 
-        server.inject( options, function ( response ) {
-            var result = response.result;
+    describe( 'GET', function () {
+        it( 'should GET a specific person by id', function ( done ) {
+            var options = {
+                method : 'GET',
+                url    : '/person/552cb675ead3b564d3249e4f'
+            };
 
-            expect( response.statusCode ).to.equal( 200 );
-            expect( result ).to.be.an.object();
-            expect( result.firstName ).to.equal( 'emma' );
-            expect( result.lastName ).to.equal( 'roberts' );
-            expect( result.contactNumber ).to.equal( 69 );
-            expect( result.bloodType ).to.equal( 'B+' );
-            expect( result.status ).to.equal( 'donator' );
+            server.inject( options, function ( response ) {
+                var result = response.result;
 
-            done();
+                expect( response.statusCode ).to.equal( 200 );
+                expect( result ).to.be.an.object();
+                expect( result.firstName ).to.equal( 'emma' );
+                expect( result.lastName ).to.equal( 'roberts' );
+                expect( result.contactNumber ).to.equal( 69 );
+                expect( result.bloodType ).to.equal( 'B+' );
+                expect( result.status ).to.equal( 'donator' );
+                console.log( result );
+
+
+                done();
+            } )
         } )
-    } )
 
-    it( 'should get lists of persons', function ( done ) {
-        var options = {
-            method : 'GET',
-            url    : '/persons'
-        };
+        it( 'should handle GET with a invalid id', function ( done ) {
+            var options = {
+                method : 'GET',
+                url    : '/person/552cb675ead3b564d324'
+            }
 
-        server.inject(options, function ( response ) {
-            var result = response.result;
+            server.inject( options, function ( response ) {
+                var result = response.result;
 
-            expect( response.statusCode ).to.equal( 200 );
-            expect( result ).to.be.an.array();
+                expect( response.statusCode ).to.equal( 200 );
+                expect( result.error ).to.equal( 'Person not found' );
 
-            done();
-        } );
-    } )
+                done();
+            })
+        } )
+
+        it( 'should get lists of persons', function ( done ) {
+            var options = {
+                method : 'GET',
+                url    : '/persons'
+            };
+
+            server.inject(options, function ( response ) {
+                var result = response.result;
+
+                expect( response.statusCode ).to.equal( 200 );
+                expect( result ).to.be.an.array();
+
+                done();
+            } );
+        } )
+    } );
 
     it( 'should be able to add a valid person', function ( done ) {
         var options = {
@@ -75,4 +96,5 @@ describe('Persons', function () {
             done();
         } )
     } )
+
 } );
