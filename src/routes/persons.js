@@ -5,9 +5,9 @@ module.exports = [
         method  : 'GET',
         path    : '/persons',
         handler : function (request, reply) {
-            Person.find( function ( err, persons ) {
+            Person.find( function ( err, person ) {
                 if ( err ) return console.error( err );
-                reply( persons );
+                reply( person );
             } );
         }
     },
@@ -17,7 +17,11 @@ module.exports = [
         handler : function ( request, reply ) {
             var id = request.params.id;
             Person.findOne( { _id : id}, function ( err, person ) {
-                if ( err ) return console.error( err );
+                if ( err ) return reply( {
+                    'statusCode' : 404,
+                    'error'      : err,
+                    'message'    : 'Person not found'
+                } );
                 reply( person );
             } )
         }

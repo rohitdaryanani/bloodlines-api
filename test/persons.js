@@ -12,17 +12,38 @@ var server = require( '../server' );
 
 
 describe('Persons', function () {
+    it( 'should get a specific person by id', function ( done ) {
+        var options = {
+            method : 'GET',
+            url    : '/person/552cb675ead3b564d3249e4f'
+        };
+
+        server.inject( options, function ( response ) {
+            var result = response.result;
+
+            expect( response.statusCode ).to.equal( 200 );
+            expect( result ).to.be.an.object();
+            expect( result.firstName ).to.equal( 'emma' );
+            expect( result.lastName ).to.equal( 'roberts' );
+            expect( result.contactNumber ).to.equal( 69 );
+            expect( result.bloodType ).to.equal( 'B+' );
+            expect( result.status ).to.equal( 'donator' );
+
+            done();
+        } )
+    } )
+
     it( 'should get lists of persons', function ( done ) {
         var options = {
-            method : "GET",
-            url    : "/persons"
+            method : 'GET',
+            url    : '/persons'
         };
 
         server.inject(options, function ( response ) {
             var result = response.result;
 
             expect( response.statusCode ).to.equal( 200 );
-            expect( result ).to.be.instanceof( Array );
+            expect( result ).to.be.an.array();
 
             done();
         } );
@@ -30,8 +51,8 @@ describe('Persons', function () {
 
     it( 'should be able to add a valid person', function ( done ) {
         var options = {
-            method  : "POST",
-            url     : "/person",
+            method  : 'POST',
+            url     : '/person',
             payload : {
                 'firstName'      : 'emma',
                 'lastName'       : 'roberts',
