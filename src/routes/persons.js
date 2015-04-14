@@ -67,5 +67,21 @@ module.exports = [
                 }
             )
         }
+    },
+    {
+        method: 'DELETE',
+        path: '/person/{id}',
+        handler: function ( request, reply ) {
+            var id = request.params.id;
+            Person.findOneAndRemove(
+                // query
+                { _id : id },
+                // callback
+                function  ( err, person ) {
+                    if ( err ) return console.error( err );
+                    reply( 'done' );
+                }
+            )
+        }
     }
 ]
