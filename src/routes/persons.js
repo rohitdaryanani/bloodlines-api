@@ -27,7 +27,7 @@ module.exports = [
     {
         method  : 'POST',
         path    : '/person',
-        handler : function (request, reply) {
+        handler : function ( request, reply ) {
             var person  = new Person ( {
                 'firstName'     : request.payload.firstName,
                 'lastName'      : request.payload.lastName,
@@ -43,9 +43,9 @@ module.exports = [
         }
     },
     {
-        method: 'PUT',
-        path: '/person/{id}',
-        handler: function ( request, reply ) {
+        method  : 'PUT',
+        path    : '/person/{id}',
+        handler : function ( request, reply ) {
             var id = request.params.id;
             Person.findOneAndUpdate (
                 // query
@@ -69,9 +69,9 @@ module.exports = [
         }
     },
     {
-        method: 'DELETE',
-        path: '/person/{id}',
-        handler: function ( request, reply ) {
+        method  : 'DELETE',
+        path    : '/person/{id}',
+        handler : function ( request, reply ) {
             var id = request.params.id;
             Person.findOneAndRemove(
                 // query
