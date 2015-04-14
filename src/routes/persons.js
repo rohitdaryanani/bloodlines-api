@@ -7,7 +7,6 @@ module.exports = [
         handler : function (request, reply) {
             Person.find( function ( err, persons ) {
                 if ( err ) return console.error( err );
-                console.log( persons );
                 reply( persons );
             } );
         }
@@ -19,7 +18,6 @@ module.exports = [
             var id = request.params.id;
             Person.findOne( { _id : id}, function ( err, person ) {
                 if ( err ) return console.error( err );
-                console.log( person );
                 reply( person );
             } )
         }
@@ -37,8 +35,7 @@ module.exports = [
             } )
             person.save( function ( err, person ) {
                 if ( err ) return console.error( err );
-                console.log( person );
-                reply( 'done' );
+                reply( person );
             } );
         }
     },
@@ -62,8 +59,7 @@ module.exports = [
                 // callback
                 function ( err, person ) {
                     if ( err ) return console.error( err );
-                    console.log( person );
-                    reply( 'done' );
+                    reply( person );
                 }
             )
         }
@@ -79,7 +75,7 @@ module.exports = [
                 // callback
                 function  ( err, person ) {
                     if ( err ) return console.error( err );
-                    reply( 'done' );
+                    reply( person );
                 }
             )
         }

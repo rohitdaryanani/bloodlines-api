@@ -23,7 +23,6 @@ describe('Persons', function () {
 
             expect( response.statusCode ).to.equal( 200 );
             expect( result ).to.be.instanceof( Array );
-            expect( result ).to.have.length( 2 );
 
             done();
         } );
@@ -34,24 +33,23 @@ describe('Persons', function () {
             method  : "POST",
             url     : "/person",
             payload : {
-                'addPerson.firstName'      : 'emma',
-                'addPerson.lastName'       : 'roberts',
-                'addPerson.contactNumber'  : 69,
-                'addPerson.bloodType'      : 'B+',
-                'addPerson.status'         : 'donator'
+                'firstName'      : 'emma',
+                'lastName'       : 'roberts',
+                'contactNumber'  : 69,
+                'bloodType'      : 'B+',
+                'status'         : 'donator'
             }
         };
 
         server.inject(options, function ( response ) {
-            var result  = response.result;
-            var payload = options.payload;
+            var payload = JSON.parse(response.payload);
 
             expect( response.statusCode ).to.equal( 200 );
-            expect( result.firstName ).to.equal( payload.firstName );
-            expect( result.lastName ).to.equal( payload.lastName );
-            expect( result.contactNumber ).to.equal( payload.contactNumber );
-            expect( result.bloodType).to.equal( payload.bloodType );
-            expect( result.status ).to.equal( payload.status );
+            expect( payload.firstName ).to.equal( options.payload.firstName );
+            expect( payload.lastName ).to.equal( options.payload.lastName );
+            expect( payload.contactNumber ).to.equal( options.payload.contactNumber );
+            expect( payload.bloodType).to.equal( options.payload.bloodType );
+            expect( payload.status ).to.equal( options.payload.status );
 
             done();
         } )
