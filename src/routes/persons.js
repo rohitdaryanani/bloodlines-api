@@ -6,7 +6,10 @@ module.exports = [
         path    : '/persons',
         handler : function (request, reply) {
             Person.find( function ( err, person ) {
-                if ( err ) return console.error( err );
+                if ( err ) return reply ( {
+                    'statusCode' : '200',
+                    'error'      : 'Error getting persons'
+                } );
                 reply( person );
             } );
         }
@@ -19,7 +22,7 @@ module.exports = [
             Person.findOne( { _id : id}, function ( err, person ) {
                 if ( err ) return reply( {
                     'statusCode' : 200,
-                    'error'      : 'Person not found'
+                    'error'      : 'Error person not found'
                 } );
                 reply( person );
             } )
@@ -37,7 +40,10 @@ module.exports = [
                 'status'        : request.payload.status
             } )
             person.save( function ( err, person ) {
-                if ( err ) return console.error( err );
+                if ( err ) return reply( {
+                    'statusCode' : '200',
+                    'error'      : 'Error creating person'
+                } );
                 reply( person );
             } );
         }
@@ -61,7 +67,10 @@ module.exports = [
                 { new : true },
                 // callback
                 function ( err, person ) {
-                    if ( err ) return console.error( err );
+                    if ( err ) return reply( {
+                        'statusCode' : '200',
+                        'error'      : 'Error updating person'
+                    } );
                     reply( person );
                 }
             )
@@ -77,7 +86,10 @@ module.exports = [
                 { _id : id },
                 // callback
                 function  ( err, person ) {
-                    if ( err ) return console.error( err );
+                    if ( err ) return reply( {
+                        'statusCode' : '200',
+                        'error'      : 'Error removing a person'
+                    } );
                     reply( person );
                 }
             )
