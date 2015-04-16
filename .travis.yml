@@ -10,7 +10,7 @@ install:
 
 script:
   # Run unit tests (and check for coverage)
-    - npm test
+    - make
 
 services:
     - mongodb
