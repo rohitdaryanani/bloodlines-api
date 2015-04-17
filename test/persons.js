@@ -21,6 +21,7 @@ var people = JSON.parse(peoplejson);
 describe( 'Persons', function () {
 
 	describe( 'GET', function () {
+
 		it( 'should GET a specific person by id', function ( done ) {
 			var options = {
 				method : 'GET',
@@ -76,31 +77,59 @@ describe( 'Persons', function () {
 
 	} );
 
-	it( 'should be able to add a valid person', function ( done ) {
-	    var options = {
-	        method  : 'POST',
-	        url     : '/person',
-	        payload : {
-	            'firstName'      : 'emma',
-	            'lastName'       : 'roberts',
-	            'contactNumber'  : 69,
-	            'bloodType'      : 'B+',
-	            'status'         : 'donator'
-	        }
-	    };
+	describe( 'POST', function () {
 
-	    server.inject(options, function ( response ) {
-	        var payload = JSON.parse(response.payload);
+		it( 'should be able to add a valid person', function ( done ) {
+		    var options = {
+		        method  : 'POST',
+		        url     : '/person',
+		        payload : {
+		            'firstName'      : 'emma',
+		            'lastName'       : 'roberts',
+		            'contactNumber'  : 69,
+		            'bloodType'      : 'B+',
+		            'status'         : 'donator'
+		        }
+		    };
 
-	        expect( response.statusCode ).to.equal( 200 );
-	        expect( payload.firstName ).to.equal( options.payload.firstName );
-	        expect( payload.lastName ).to.equal( options.payload.lastName );
-	        expect( payload.contactNumber ).to.equal( options.payload.contactNumber );
-	        expect( payload.bloodType).to.equal( options.payload.bloodType );
-	        expect( payload.status ).to.equal( options.payload.status );
+		    server.inject(options, function ( response ) {
+		        var payload = JSON.parse(response.payload);
 
-	        done();
+		        expect( response.statusCode ).to.equal( 200 );
+		        expect( payload.firstName ).to.equal( options.payload.firstName );
+		        expect( payload.lastName ).to.equal( options.payload.lastName );
+		        expect( payload.contactNumber ).to.equal( options.payload.contactNumber );
+		        expect( payload.bloodType).to.equal( options.payload.bloodType );
+		        expect( payload.status ).to.equal( options.payload.status );
+
+		        done();
+			} );
 		} );
-	} );
+
+		it( 'should not be able to add a person with invalid data', function ( done ) {
+		    var options = {
+		        method  : 'POST',
+		        url     : '/person',
+		        payload : {
+		            'firstName'      : 'emma',
+		            'lastName'       : 'roberts',
+		            'contactNumber'  : 'sjdksjkd',
+		            'bloodType'      : 'B+',
+		            'status'         : 'donator'
+		        }
+		    };
+
+		    server.inject(options, function ( response ) {
+		        var result = response.result;
+
+		        expect( response.statusCode ).to.equal( 200 );
+		        expect( result.error ).to.equal( 'Error creating person' );
+
+		        done();
+			} );
+		} );
+
+	} )
+
 
 } );
