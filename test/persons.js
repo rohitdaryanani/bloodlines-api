@@ -42,6 +42,65 @@ describe( 'Persons', function () {
 			} )
 		} )
 
+	    it( 'should handle GET with a invalid id', function ( done ) {
+	        var options = {
+	            method : 'GET',
+	            url    : '/person/552cb675ead3b564d324'
+	        }
+
+	        server.inject( options, function ( response ) {
+	            var result = response.result;
+
+	            expect( response.statusCode ).to.equal( 200 );
+	            expect( result.error ).to.equal( 'Error person not found' );
+
+	            done();
+	        })
+	    } )
+
+	    it( 'should GET lists of persons', function ( done ) {
+	        var options = {
+	            method : 'GET',
+	            url    : '/persons'
+	        };
+
+	        server.inject(options, function ( response ) {
+	            var result = response.result;
+
+	            expect( response.statusCode ).to.equal( 200 );
+	            expect( result ).to.be.an.array();
+
+	            done();
+	        } );
+	    } )
+
+	} );
+
+	it( 'should be able to add a valid person', function ( done ) {
+	    var options = {
+	        method  : 'POST',
+	        url     : '/person',
+	        payload : {
+	            'firstName'      : 'emma',
+	            'lastName'       : 'roberts',
+	            'contactNumber'  : 69,
+	            'bloodType'      : 'B+',
+	            'status'         : 'donator'
+	        }
+	    };
+
+	    server.inject(options, function ( response ) {
+	        var payload = JSON.parse(response.payload);
+
+	        expect( response.statusCode ).to.equal( 200 );
+	        expect( payload.firstName ).to.equal( options.payload.firstName );
+	        expect( payload.lastName ).to.equal( options.payload.lastName );
+	        expect( payload.contactNumber ).to.equal( options.payload.contactNumber );
+	        expect( payload.bloodType).to.equal( options.payload.bloodType );
+	        expect( payload.status ).to.equal( options.payload.status );
+
+	        done();
+		} );
 	} );
 
 } );
