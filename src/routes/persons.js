@@ -35,14 +35,16 @@ module.exports = [
             var person  = new Person ( {
                 'firstName'     : request.payload.firstName,
                 'lastName'      : request.payload.lastName,
+                'email'         : request.payload.email,
+                'password'      : request.payload.password,
                 'contactNumber' : request.payload.contactNumber,
-                'bloodType'     : request.payload.bloodType,
-                'status'        : request.payload.status
+                'bloodType'     : request.payload.bloodType
             } )
             person.save( function ( err, person ) {
                 if ( err ) return reply( {
                     'statusCode' : '200',
-                    'error'      : 'Error creating person'
+                    'error'      : err,
+                    'message'    : 'Error creating person'
                 } );
                 reply( person );
             } );
@@ -57,11 +59,13 @@ module.exports = [
                 // query
                 { _id : id },
                 // update
-                {   'firstName'     : request.payload.firstName,
-                    'lastName'      : request.payload.lastName,
-                    'contactNumber' : request.payload.contactNumber,
-                    'bloodType'     : request.payload.bloodType,
-                    'status'        : request.payload.status
+                {
+                	'firstName'     : request.payload.firstName,
+                	'lastName'      : request.payload.lastName,
+                	'email'         : request.payload.email,
+                	'password'      : request.payload.password,
+                	'contactNumber' : request.payload.contactNumber,
+                	'bloodType'     : request.payload.bloodType
                 },
                 // options
                 { new : true },

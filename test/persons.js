@@ -35,9 +35,10 @@ describe( 'Persons', function () {
 				expect( result ).to.be.an.object();
 				expect( result.firstName ).to.equal( people[0].firstName );
 				expect( result.lastName ).to.equal( people[0].lastName );
+				expect( result.email ).to.equal( people[0].email );
+				expect( result.password ).to.equal( people[0].password );
 				expect( result.contactNumber ).to.equal( people[0].contactNumber );
 				expect( result.bloodType ).to.equal( people[0].bloodType );
-				expect( result.status ).to.equal( people[0].status );
 
 				done();
 			} )
@@ -84,11 +85,12 @@ describe( 'Persons', function () {
 		        method  : 'POST',
 		        url     : '/person',
 		        payload : {
-		            'firstName'      : 'emma',
-		            'lastName'       : 'roberts',
-		            'contactNumber'  : 69,
-		            'bloodType'      : 'B+',
-		            'status'         : 'donator'
+		            'firstName'     : "john",
+		            'lastName'      : "doe",
+		            'email'         : "rohitdaryanani@live.com",
+		            'password'      : "123456",
+		            'contactNumber' : 123456,
+		            'bloodType'     : "O",
 		        }
 		    };
 
@@ -98,6 +100,8 @@ describe( 'Persons', function () {
 		        expect( response.statusCode ).to.equal( 200 );
 		        expect( payload.firstName ).to.equal( options.payload.firstName );
 		        expect( payload.lastName ).to.equal( options.payload.lastName );
+		        expect( payload.email ).to.equal( options.payload.email );
+		        expect( payload.password ).to.equal( options.payload.password );
 		        expect( payload.contactNumber ).to.equal( options.payload.contactNumber );
 		        expect( payload.bloodType).to.equal( options.payload.bloodType );
 		        expect( payload.status ).to.equal( options.payload.status );
@@ -111,19 +115,20 @@ describe( 'Persons', function () {
 		        method  : 'POST',
 		        url     : '/person',
 		        payload : {
-		            'firstName'      : 'emma',
-		            'lastName'       : 'roberts',
-		            'contactNumber'  : 'sjdksjkd',
-		            'bloodType'      : 'B+',
-		            'status'         : 'donator'
-		        }
+		        	    'firstName'     : "john",
+		        	    'lastName'      : "doe",
+		        	    'email'         : "rohitdaryanani@live.com",
+		        	    'password'      : "123456",
+		        	    'contactNumber' : 123456,
+		        	    'bloodType'     : "O",
+		        	}
 		    };
 
 		    server.inject(options, function ( response ) {
 		        var result = response.result;
 
 		        expect( response.statusCode ).to.equal( 200 );
-		        expect( result.error ).to.equal( 'Error creating person' );
+		        expect( result.message ).to.equal( 'Error creating person' );
 
 		        done();
 			} );
