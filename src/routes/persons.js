@@ -59,14 +59,8 @@ module.exports = [
                 // query
                 { _id : id },
                 // update
-                {
-                	'firstName'     : request.payload.firstName,
-                	'lastName'      : request.payload.lastName,
-                	'email'         : request.payload.email,
-                	'password'      : request.payload.password,
-                	'contactNumber' : request.payload.contactNumber,
-                	'bloodType'     : request.payload.bloodType
-                },
+                request.payload
+                ,
                 // options
                 { new : true },
                 // callback

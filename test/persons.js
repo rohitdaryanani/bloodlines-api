@@ -85,12 +85,12 @@ describe( 'Persons', function () {
 		        method  : 'POST',
 		        url     : '/person',
 		        payload : {
-		            'firstName'     : "john",
-		            'lastName'      : "doe",
-		            'email'         : "rohitdaryanani@live.com",
-		            'password'      : "123456",
+		            'firstName'     : 'john',
+		            'lastName'      : 'doe',
+		            'email'         : 'rohitdaryanani@live.com',
+		            'password'      : '123456',
 		            'contactNumber' : 123456,
-		            'bloodType'     : "O",
+		            'bloodType'     : 'O'
 		        }
 		    };
 
@@ -101,7 +101,6 @@ describe( 'Persons', function () {
 		        expect( payload.firstName ).to.equal( options.payload.firstName );
 		        expect( payload.lastName ).to.equal( options.payload.lastName );
 		        expect( payload.email ).to.equal( options.payload.email );
-		        expect( payload.password ).to.equal( options.payload.password );
 		        expect( payload.contactNumber ).to.equal( options.payload.contactNumber );
 		        expect( payload.bloodType).to.equal( options.payload.bloodType );
 		        expect( payload.status ).to.equal( options.payload.status );
@@ -115,12 +114,12 @@ describe( 'Persons', function () {
 		        method  : 'POST',
 		        url     : '/person',
 		        payload : {
-		        	    'firstName'     : "john",
-		        	    'lastName'      : "doe",
-		        	    'email'         : "rohitdaryanani@live.com",
-		        	    'password'      : "123456",
+		        	    'firstName'     : 'john',
+		        	    'lastName'      : 'doe',
+		        	    'email'         : 'rohitdaryanani@live.com',
+		        	    'password'      : '123456',
 		        	    'contactNumber' : 123456,
-		        	    'bloodType'     : "O",
+		        	    'bloodType'     : 'O'
 		        	}
 		    };
 
@@ -135,6 +134,31 @@ describe( 'Persons', function () {
 		} );
 
 	} )
+
+	describe( 'PUT', function () {
+
+		it( 'should be able to update a person', function ( done ) {
+			var options = {
+				method  : 'PUT',
+				url     : '/person/5534d40505a4630df1eaef49',
+				payload : {
+					'firstName' : 'Sakdip'
+				}
+			};
+
+			server.inject( options, function ( response ) {
+				var payload = JSON.parse( response.payload );
+
+				expect( payload.firstName ).to.equal( options.payload.firstName );
+				expect( response.statusCode ).to.equal( 200 );
+				done();
+			} )
+		} );
+
+		it( 'should not be able to update a person if data is invalid', function (argument) {
+			// body...
+		})
+	} );
 
 
 } );
