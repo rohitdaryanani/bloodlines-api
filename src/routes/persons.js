@@ -67,7 +67,8 @@ module.exports = [
                 function ( err, person ) {
                     if ( err ) return reply( {
                         'statusCode' : '200',
-                        'error'      : 'Error updating person'
+                        'error'      : err,
+                        'message'    : 'Error updating person'
                     } );
                     reply( person );
                 }
@@ -86,7 +87,8 @@ module.exports = [
                 function  ( err, person ) {
                     if ( err ) return reply( {
                         'statusCode' : '200',
-                        'error'      : 'Error removing a person'
+                        'error'      : err,
+                        'message'    : 'Error removing a person'
                     } );
                     reply( person );
                 }

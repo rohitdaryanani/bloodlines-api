@@ -155,10 +155,54 @@ describe( 'Persons', function () {
 			} )
 		} );
 
-		it( 'should not be able to update a person if data is invalid', function (argument) {
-			// body...
-		})
+		it( 'should not be able to update a person if data is invalid', function ( done ) {
+			var options = {
+				method  : 'PUT',
+				url     : '/person/5534d40505a4630df1eaef49',
+				payload : {
+					'contactNumber' : 'dsdsds'
+				}
+			};
+
+			server.inject( options, function ( response ) {
+				var result = response.result;
+
+				expect( response.statusCode ).to.equal( 200 );
+				expect( result.message ).to.equal( 'Error updating person' );
+				done();
+			} );
+		} );
+
 	} );
 
+	describe('DELETE', function () {
+
+		it( 'should be able to delete a person', function ( done ) {
+			var options = {
+				method : 'DELETE',
+				url    : '/person/5534d61405a4630df1eaef4c',
+			}
+
+			server.inject( options, function ( response ) {
+				expect( response.statusCode ).to.equal( 200 );
+				done();
+			} );
+		} );
+
+		it( 'should handle if invalid id is used', function ( done ) {
+			var options = {
+				method : 'DELETE',
+				url    : '/person/5534d61405a4630df1e4c',
+			}
+
+			server.inject( options, function ( response ) {
+				var result = response.result;
+
+				expect( response.statusCode ).to.equal( 200 );
+				expect( result.message ).to.equal( 'Error removing a person' );
+				done();
+			} );
+		})
+	} );
 
 } );
