@@ -16,7 +16,7 @@ module.exports = [
     },
     {
         method  : 'GET',
-        path    : '/person/{id}',
+        path    : '/persons/{id}',
         handler : function ( request, reply ) {
             var id = request.params.id;
             Person.findOne( { _id : id}, function ( err, person ) {
@@ -30,7 +30,7 @@ module.exports = [
     },
     {
         method  : 'POST',
-        path    : '/person',
+        path    : '/persons',
         handler : function ( request, reply ) {
             var person  = new Person ( {
                 'firstName'     : request.payload.firstName,
@@ -52,7 +52,7 @@ module.exports = [
     },
     {
         method  : 'PUT',
-        path    : '/person/{id}',
+        path    : '/persons/{id}',
         handler : function ( request, reply ) {
             var id = request.params.id;
             Person.findOneAndUpdate (
@@ -77,7 +77,7 @@ module.exports = [
     },
     {
         method  : 'DELETE',
-        path    : '/person/{id}',
+        path    : '/persons/{id}',
         handler : function ( request, reply ) {
             var id = request.params.id;
             Person.findOneAndRemove(

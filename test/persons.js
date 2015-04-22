@@ -25,7 +25,7 @@ describe( 'Persons', function () {
 		it( 'should GET a specific person by id', function ( done ) {
 			var options = {
 				method : 'GET',
-				url    : '/person/' + people[0]._id['$oid']
+				url    : '/persons/' + people[0]._id['$oid']
 			};
 
 			server.inject( options, function ( response ) {
@@ -47,7 +47,7 @@ describe( 'Persons', function () {
 	    it( 'should handle GET with a invalid id', function ( done ) {
 	        var options = {
 	            method : 'GET',
-	            url    : '/person/552cb675ead3b564d324'
+	            url    : '/persons/552cb675ead3b564d324'
 	        }
 
 	        server.inject( options, function ( response ) {
@@ -83,7 +83,7 @@ describe( 'Persons', function () {
 		it( 'should be able to add a valid person', function ( done ) {
 		    var options = {
 		        method  : 'POST',
-		        url     : '/person',
+		        url     : '/persons',
 		        payload : {
 		            'firstName'     : 'john',
 		            'lastName'      : 'doe',
@@ -112,7 +112,7 @@ describe( 'Persons', function () {
 		it( 'should not be able to add a person with invalid data', function ( done ) {
 		    var options = {
 		        method  : 'POST',
-		        url     : '/person',
+		        url     : '/persons',
 		        payload : {
 		        	    'firstName'     : 'john',
 		        	    'lastName'      : 'doe',
@@ -140,7 +140,7 @@ describe( 'Persons', function () {
 		it( 'should be able to update a person', function ( done ) {
 			var options = {
 				method  : 'PUT',
-				url     : '/person/5534d40505a4630df1eaef49',
+				url     : '/persons/5534d40505a4630df1eaef49',
 				payload : {
 					'firstName' : 'Sakdip'
 				}
@@ -158,7 +158,7 @@ describe( 'Persons', function () {
 		it( 'should not be able to update a person if data is invalid', function ( done ) {
 			var options = {
 				method  : 'PUT',
-				url     : '/person/5534d40505a4630df1eaef49',
+				url     : '/persons/5534d40505a4630df1eaef49',
 				payload : {
 					'contactNumber' : 'dsdsds'
 				}
@@ -180,7 +180,7 @@ describe( 'Persons', function () {
 		it( 'should be able to delete a person', function ( done ) {
 			var options = {
 				method : 'DELETE',
-				url    : '/person/5534d61405a4630df1eaef4c',
+				url    : '/persons/5534d61405a4630df1eaef4c',
 			}
 
 			server.inject( options, function ( response ) {
@@ -192,7 +192,7 @@ describe( 'Persons', function () {
 		it( 'should handle if invalid id is used', function ( done ) {
 			var options = {
 				method : 'DELETE',
-				url    : '/person/5534d61405a4630df1e4c',
+				url    : '/persons/5534d61405a4630df1e4c',
 			}
 
 			server.inject( options, function ( response ) {
