@@ -1,9 +1,10 @@
-var moongose = require( 'mongoose' );
+/// <reference path="../../typings/node/node.d.ts"/>
+var mongoose = require( 'mongoose' );
 var bcrypt   = require('bcrypt');
 
 var SALT = process.env.APP_SALT || '$2a$10$RSh34k8JX7./qG3ODWyae.';
 
-var personSchema = moongose.Schema( {
+var personSchema = mongoose.Schema( {
     firstName      : String,
     lastName       : String,
     email          : {
@@ -24,4 +25,17 @@ personSchema.pre( 'save', function ( next ) {
 	next();
 } )
 
-module.exports = moongose.model('Person', personSchema);
+personSchema.statics.login = function ( email, password, cb) {
+	var Person = mongoose.model('Person');
+	password   = bcrypt.hashSync( password, SALT );
+
+	Person.findOne( { email : email, password : password }, function ( err, person ) {
+		if ( person ) {
+			return cb( null, person );
+		}
+
+		cb( err || new Error(), null );
+	} );
+}
+
+mongoose.model('Person', personSchema);

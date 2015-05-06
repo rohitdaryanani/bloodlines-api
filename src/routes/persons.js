@@ -1,4 +1,4 @@
-var Person = require( '../models/person.js' );
+var Person = require( 'mongoose' ).model('Person');
 
 module.exports = [
     {

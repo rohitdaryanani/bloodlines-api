@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var Hapi     = require( 'hapi' );
 var Good     = require( 'good' );
@@ -8,9 +8,10 @@ var mongoose = require( 'mongoose' );
 
 // connect to mongo
 mongoose.connect( 'mongodb://localhost/test' );
+require('./src/models/person');
 
 // routes
-var pageRoutes = _.union(require( './src/routes/persons' ));
+var pageRoutes = _.union(require( './src/routes/persons' ), require( './src/routes/index' ) );
 
 // server config
 var server = new Hapi.Server();
@@ -45,5 +46,5 @@ server.register( {
         } );
     }
 
-})
+});
 
