@@ -53,6 +53,9 @@ module.exports = [
     {
         method  : 'PUT',
         path    : '/persons/{id}',
+        config : {
+        	auth : 'token'
+        },
         handler : function ( request, reply ) {
             var id = request.params.id;
             Person.findOneAndUpdate (
@@ -70,7 +73,9 @@ module.exports = [
                         'error'      : err,
                         'message'    : 'Error updating person'
                     } );
-                    reply( person );
+                    var _person = person.toJSON();
+                    delete _person.password;
+                    reply( _person );
                 }
             )
         }

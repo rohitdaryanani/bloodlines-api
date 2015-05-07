@@ -5,6 +5,7 @@ var Good     = require( 'good' );
 var _        = require( 'lodash' );
 var mongoose = require( 'mongoose' );
 
+var SALT = process.env.APP_SALT || '$2a$10$RSh34k8JX7./qG3ODWyae.';
 
 // connect to mongo
 mongoose.connect( 'mongodb://localhost/test' );
@@ -21,10 +22,8 @@ module.exports = server.connection({
     port: '8000'
 });
 
-// populate route
-server.route( pageRoutes );
 
-server.register( {
+server.register([ require('hapi-auth-jwt'),  {
     register: Good,
     options: {
         reporters: [ {
@@ -35,14 +34,21 @@ server.register( {
             } ]
         } ]
     }
-}, function ( err ) {
+} ], function ( err ) {
     if ( err ) {
-        throw err;
+        return console.log('plugin not successfully loaded!');
     }
+
+    server.auth.strategy( 'token', 'jwt', {
+    	key : SALT
+    } );
+
+	// populate route
+	server.route( pageRoutes );
 
     if ( !module.parent ) {
         server.start( function () {
-            server.log('info', 'Server running at:', server.info.uri );
+            console.log('info', 'Server running at:', server.info.uri );
         } );
     }
 
