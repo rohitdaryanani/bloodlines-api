@@ -1,8 +1,5 @@
-var Person      = require( 'mongoose' ).model('Person');
-var jwt         = require( 'jsonwebtoken' );
-
-var SALT = process.env.APP_SALT || '$2a$10$RSh34k8JX7./qG3ODWyae.';
-
+var Person   = require( 'mongoose' ).model('Person');
+var jwtToken = require('../utils/token-generator');
 
 module.exports = [
 	{
@@ -27,13 +24,7 @@ module.exports = [
 				}
 
 				// generate token
-				var token = jwt.sign( {
-					person   : person,
-					success  : true,
-					loggedin : true
-				}, SALT, {
-					expiresInMinutes : 60 // expires in 60 minutes
-				} );
+				var token = jwtToken( person )
 
 				reply( { token : token } );
 			});

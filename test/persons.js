@@ -1,7 +1,6 @@
 var Code = require('code');
 var Lab  = require('lab');
 var path = require('path');
-var jwt  = require( 'jsonwebtoken' );
 var lab  = exports.lab = Lab.script();
 
 var describe = lab.describe;
@@ -10,7 +9,8 @@ var before   = lab.before;
 var after    = lab.after;
 var expect   = Code.expect;
 
-var server = require( '../server' );
+var server   = require( '../server' );
+var jwtToken = require('../src/utils/token-generator');
 
 var peoplejson = require('fs').readFileSync(path.join(__dirname, '../people.json'));
 	peoplejson = peoplejson.toString();
@@ -19,14 +19,7 @@ var peoplejson = require('fs').readFileSync(path.join(__dirname, '../people.json
 
 var people = JSON.parse(peoplejson);
 
-var SALT  = process.env.APP_SALT || '$2a$10$RSh34k8JX7./qG3ODWyae.';
-var token = jwt.sign( {
-	person   : people[0],
-	success  : true,
-	loggedin : true
-}, SALT, {
-	expiresInMinutes : 60 // expires in 60 minutes
-} );
+var token = jwtToken( people[ 0 ] );
 
 describe( 'Persons', function () {
 
