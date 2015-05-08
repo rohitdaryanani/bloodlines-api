@@ -1,5 +1,0 @@
-{ "firstName" : "john", "lastName" : "doe", "email" : "rohitdaryanani@yahoo.com", "password" : "123456", "contactNumber" : 123456, "bloodType" : "O", "_id" : { "$oid" : "5534d3276ab1da90f0231dc2" }, "__v" : 0 }
-{ "__v" : 0, "_id" : { "$oid" : "5534d40505a4630df1eaef49" }, "bloodType" : "B+", "contactNumber" : 654322, "email" : "johndoe@yahoo.com", "firstName" : "john", "lastName" : "doe", "password" : "123456" }
-{ "firstName" : "emma", "lastName" : "watson", "email" : "watson@gmail.com", "password" : "dkjskjde", "contactNumber" : 77773333, "bloodType" : "B-", "_id" : { "$oid" : "5534d5ab05a4630df1eaef4a" }, "__v" : 0 }
-{ "firstName" : "emma", "lastName" : "stone", "email" : "emmastone@icloud.com", "password" : "nncnncj", "contactNumber" : 7774444, "bloodType" : "AB", "_id" : { "$oid" : "5534d5ed05a4630df1eaef4b" }, "__v" : 0 }
-{ "firstName" : "emma", "lastName" : "roberts", "email" : "roberts69@icloud.com", "password" : "nncnncj", "contactNumber" : 7774444, "bloodType" : "O", "_id" : { "$oid" : "5534d61405a4630df1eaef4c" }, "__v" : 0 }
