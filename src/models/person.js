@@ -25,6 +25,13 @@ personSchema.pre( 'save', function ( next ) {
 	next();
 } )
 
+/**
+ * checks if person is a registered user
+ * @param  {[String]} email Unique email of the person
+ * @param  {[String]} password Raw password provided by user
+ * @param  {Function} cb A callback function for the person object
+ * @return {[Object]} Returns person object
+ */
 personSchema.statics.login = function ( email, password, cb) {
 	var Person = mongoose.model('Person');
 	password   = bcrypt.hashSync( password, SALT );
