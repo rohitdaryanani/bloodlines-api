@@ -31,6 +31,7 @@
     "mongoose": "~4.0.1",
     "bcrypt": "~0.8.2",
     "jsonwebtoken": "~5.0.0",
-    "hapi-auth-jwt": "~2.1.2"
+    "hapi-auth-jwt": "~2.1.2",
+    "istanbul": "~0.3.13"
   }
 }
