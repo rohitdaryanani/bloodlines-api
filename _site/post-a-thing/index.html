@@ -1,0 +1,36 @@
+<p>This method allows to create a new person.</p>
+
+<h3 id="request">Request</h3>
+
+<ul>
+  <li>The headers must include a <strong>valid authentication token</strong>.</li>
+  <li><strong>The body can’t be empty</strong> .</li>
+  <li><code>required</code> unique email address, type <code>string</code>.</li>
+  <li><code>required</code> password, type <code>string</code>.</li>
+</ul>
+
+<p><code>Authentication: bearer TOKEN</code>
+<code>{
+	firstName     : 'emma',
+	lastName      : 'stone',
+	email         : 'roberts69@icloud.com',
+	contactNumber : 7774444,
+	bloodType     : 'O',
+	_id           : '55379906501f1db540f0e119'
+}</code></p>
+
+<h3 id="response">Response</h3>
+
+<p><strong>If succeeds</strong>, returns the created person.</p>
+
+<p><code>Status: 201 Created</code>
+<code>{
+	firstName     : 'emma',
+	lastName      : 'stone',
+	email         : 'roberts69@icloud.com',
+	contactNumber : 7774444,
+	bloodType     : 'O',
+	_id           : '55379906501f1db540f0e119'
+}</code></p>
+
+<p>For errors responses, see the <a href="#response-status-codes">response status codes documentation</a>.</p>

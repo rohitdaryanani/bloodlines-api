@@ -1,0 +1,20 @@
+<p>This method allows the person to be removed.</p>
+
+<h3 id="request">Request</h3>
+
+<ul>
+  <li><strong><code>:id</code></strong> is the id of the person to be delete.</li>
+  <li>The headers must include a <strong>valid authentication token</strong>.</li>
+  <li><strong>The body is omitted</strong>.</li>
+</ul>
+
+<h3 id="response">Response</h3>
+
+<p><strong>If succeeds</strong>, returns the deleted person.</p>
+
+<p><code>Status: 200 Deleted</code>
+<code>{
+    code: 200
+}</code></p>
+
+<p>For errors responses, see the <a href="#response-status-codes">response status codes documentation</a>.</p>
