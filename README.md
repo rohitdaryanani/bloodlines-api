@@ -1,4 +1,4 @@
-#BLOODLINES-API [![Build Status](https://api.shippable.com/projects/551107755ab6cc1352a8f311/badge?branchName=dev)](https://app.shippable.com/projects/551107755ab6cc1352a8f311/builds/latest) [![Gittip](http://img.shields.io/gratipay/alis894.svg)](https://www.gittip.com/alis894/)
+#BLOODLINES-API [![Build Status](https://travis-ci.org/rohitdaryanani/bloodlines-api.svg)](https://travis-ci.org/rohitdaryanani/bloodlines-api) [![Gittip](http://img.shields.io/gratipay/alis894.svg)](https://www.gittip.com/alis894/)
 ## Description
 
 Bloodlines is just a simple posting platform for people who are willing to donate blood, powered by [**node.js**](http://nodejs.org)and [**hapijs**](http://hapijs.com/) web framework, [**mongodb**](http://mongodb.com) for the database, It's pretty simple and no fancy stuff, just pure api.
