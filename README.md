@@ -1,5 +1,7 @@
 #BLOODLINES-API [![Build Status](https://api.shippable.com/projects/551107755ab6cc1352a8f311/badge?branchName=dev)](https://app.shippable.com/projects/551107755ab6cc1352a8f311/builds/latest)
 
+[![Join the chat at https://gitter.im/rohitdaryanani/bloodlines](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/rohitdaryanani/bloodlines?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Description
 
 Bloodlines is just a simple posting platform for people who are willing to donate blood, powered by [**node.js**](http://nodejs.org)and [**hapijs**](http://hapijs.com/) web framework, [**mongodb**](http://mongodb.com) for the database, It's pretty simple and no fancy stuff, just pure api.
