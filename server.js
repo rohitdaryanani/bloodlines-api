@@ -6,6 +6,7 @@ var _        = require( 'lodash' );
 var mongoose = require( 'mongoose' );
 
 var SALT = process.env.APP_SALT || '$2a$10$RSh34k8JX7./qG3ODWyae.';
+var PORT = process.env.PORT || 8000;
 
 // connect to mongo
 mongoose.connect( 'mongodb://localhost/test' );
@@ -19,7 +20,7 @@ var server = new Hapi.Server();
 
 // inject server for test
 module.exports = server.connection({
-    port: '8000'
+    port: PORT
 });
 
 
