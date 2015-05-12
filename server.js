@@ -9,7 +9,7 @@ var SALT      = process.env.APP_SALT || '$2a$10$RSh34k8JX7./qG3ODWyae.';
 var PORT      = process.env.PORT || 8000;
 var MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost/test'
 
-// connect to mongo
+// connect to mongo db
 mongoose.connect( MONGO_URL );
 require('./src/models/person');
 
